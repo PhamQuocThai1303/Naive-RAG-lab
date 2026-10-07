@@ -1,0 +1,11 @@
+# API key không bao giờ được đi vào git.
+# Cách dùng khuyến nghị là đặt biến môi trường, nhưng nếu ai đó tiện tay tạo
+# .env thì chặn sẵn ở đây.
+.env
+.env.*
+*.key
+
+# venv tạo ngay trong thư mục project
+.venv/
+index.html
+RAG_STUDY_GUIDE.md

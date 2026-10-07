@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" modified="2026-07-28T00:00:00.000Z" agent="TECHSpherex-AI" version="24.0.0" type="device">
+  <diagram name="Bay tieu de mo coi" id="orphan-heading">
+    <mxGraphModel dx="1100" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1060" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="q" value="Câu hỏi: “RAG là gì?”&lt;br&gt;từ khoá khớp: &lt;b&gt;RAG&lt;/b&gt;" style="shape=parallelogram;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="260" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a1" value="&lt;b&gt;Chunk A&lt;/b&gt; — mẩu tiêu đề&lt;br&gt;&quot;## RAG&quot;  ·  9 ký tự  ·  1 từ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="80" y="180" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="Vector được chuẩn hoá về độ dài 1&lt;br&gt;&lt;b&gt;1 từ khớp / 1 từ tổng&lt;/b&gt;&lt;br&gt;→ từ đó chiếm TOÀN BỘ độ dài vector" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="80" y="290" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="cosine = &lt;b&gt;1.000&lt;/b&gt;&lt;br&gt;★ hạng 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Segoe UI;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="140" y="420" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="Nhưng nội dung là 6 ký tự tiêu đề.&lt;br&gt;&lt;b&gt;Không trả lời được gì cả.&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="520" width="260" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="b1" value="&lt;b&gt;Chunk B&lt;/b&gt; — đoạn có nội dung thật&lt;br&gt;420 ký tự  ·  ~60 từ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="680" y="180" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" value="Cũng chuẩn hoá về độ dài 1&lt;br&gt;&lt;b&gt;1 từ khớp / 60 từ tổng&lt;/b&gt;&lt;br&gt;→ từ đó chỉ chiếm một phần nhỏ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="680" y="290" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" value="cosine = &lt;b&gt;0.250&lt;/b&gt;&lt;br&gt;★ hạng 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Segoe UI;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="740" y="420" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" value="Đây mới là đoạn trả lời được câu hỏi.&lt;br&gt;&lt;b&gt;Điểm thấp hơn nhưng hữu ích hơn.&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="700" y="520" width="260" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="concl" value="&lt;b&gt;ĐIỂM CAO KHÔNG CÓ NGHĨA LÀ CHUNK TỐT&lt;/b&gt;&lt;br&gt;&lt;br&gt;Đây không phải lỗi của cosine. Vector được chuẩn hoá về độ dài 1, nên chunk càng ít từ thì mỗi&lt;br&gt;từ khớp càng chiếm tỉ trọng lớn. Cosine đo GÓC, không đo &quot;đoạn này có ích không&quot;." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacing=10;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="630" width="860" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="fix" value="&lt;b&gt;Cách chặn:&lt;/b&gt; đặt &lt;i&gt;Gộp chunk ngắn hơn&lt;/i&gt; = 80 ký tự — mẩu tiêu đề bị dính vào đoạn liền sau&lt;br&gt;thay vì đứng một mình. Đặt = 0 rồi lập chỉ mục lại là thấy lại đúng cái bẫy này trong app." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b3b3b3;align=left;verticalAlign=top;spacing=10;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="750" width="860" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ea" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="q" target="a1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="q" target="b1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ea2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="a1" target="a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ea3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="a2" target="a3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ea4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="a3" target="a4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eb2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="b1" target="b2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eb3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="b2" target="b3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eb4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="b3" target="b4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

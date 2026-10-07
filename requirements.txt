@@ -1,0 +1,18 @@
+# --- bắt buộc (core dependencies) ---
+customtkinter>=5.2.0
+pillow>=10.0.0
+numpy>=1.24.0
+
+# --- tuỳ chọn (optional dependencies): cài riêng khi cần, ĐỪNG bỏ comment ở đây ---
+#
+# Nếu bỏ comment ở đây thì `pip install -r requirements.txt` sẽ kéo luôn cả nhóm này,
+# trong đó sentence-transformers kéo theo PyTorch (vài GB) — làm mất đi điểm mạnh của tool:
+# chạy nhẹ, đủ tính năng, offline, không cần tải heavy models.
+#
+#   python -m pip install sentence-transformers   # semantic embeddings (hiểu synonyms)
+#   python -m pip install -U google-genai         # bước GENERATE gọi Gemini LLM (có free tier)
+#   python -m pip install anthropic               # bước GENERATE gọi Claude LLM (trả phí theo usage)
+#   python -m pip install pymupdf                 # parser đọc tài liệu PDF
+#
+# Không cài các package trên thì tool vẫn chạy đầy đủ: embedder TF-IDF + Hashing và chế độ
+# "Retrieve-only" hoạt động hoàn toàn offline/local.

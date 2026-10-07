@@ -1,0 +1,75 @@
+<mxfile host="app.diagrams.net" modified="2026-07-28T00:00:00.000Z" agent="TECHSpherex-AI" version="24.0.0" type="device">
+  <diagram name="Naive RAG gay o dau" id="naive-vs-adv">
+    <mxGraphModel dx="1100" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1060" pageHeight="880" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="core" value="&lt;b&gt;NAIVE RAG&lt;/b&gt;&lt;br&gt;khớp câu hỏi với chunk bằng&lt;br&gt;&lt;b&gt;MỘT&lt;/b&gt; phép so vector duy nhất" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="380" y="40" width="300" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="d1" value="người hỏi dùng từ ngữ&lt;br&gt;khác hẳn tài liệu?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="220" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" value="viết lại / mở rộng câu hỏi&lt;br&gt;&lt;b&gt;HyDE&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="380" width="240" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="d2" value="câu trả lời nằm rải&lt;br&gt;nhiều chunk?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="330" y="220" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" value="tìm kiếm lai (hybrid)&lt;br&gt;&lt;b&gt;parent-document retrieval&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="330" y="380" width="240" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="d3" value="thứ hạng top-k&lt;br&gt;không chuẩn?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="600" y="220" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" value="mô hình &lt;b&gt;rerank&lt;/b&gt;&lt;br&gt;chấm lại k đoạn đã lấy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="600" y="380" width="240" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="d4" value="câu hỏi cần suy luận&lt;br&gt;nhiều bước?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="870" y="220" width="150" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" value="&lt;b&gt;truy hồi nhiều vòng&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="870" y="380" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="note" value="&lt;b&gt;Vì sao tool này CỐ TÌNH không có mấy kỹ thuật trên&lt;/b&gt;&lt;br&gt;&lt;br&gt;Mỗi kỹ thuật advanced chỉ dễ hiểu khi đã thấy tận mắt chỗ naive RAG hụt hơi. Học ngược lại — cài&lt;br&gt;rerank rồi mới hỏi &quot;nó vá cái gì?&quot; — thì chỉ nhớ được tên kỹ thuật chứ không hiểu vấn đề." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacing=10;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="500" width="960" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="how" value="&lt;b&gt;Cách thấy naive RAG hụt hơi ngay trong app&lt;/b&gt;&lt;br&gt;&lt;br&gt;· Hỏi &quot;Cách nấu phở bò&quot; — tài liệu không có câu trả lời, nhưng nó vẫn trả về đủ k đoạn.&lt;br&gt;&amp;nbsp;&amp;nbsp;Mọi thanh trong biểu đồ đều thấp lè tè. &lt;b&gt;Nó không hề biết mình đang trượt.&lt;/b&gt;&lt;br&gt;· Đổi embedder sang TF-IDF rồi hỏi bằng từ đồng nghĩa — cosine giữa &quot;xe hơi&quot; và &quot;ô tô&quot; bằng ĐÚNG 0.&lt;br&gt;· Mở tab So sánh, nhìn cột &lt;b&gt;tín/nhiễu&lt;/b&gt;: điểm câu trả lời được chia cho điểm câu lạc đề." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b3b3b3;align=left;verticalAlign=top;spacing=10;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="620" width="960" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="core" target="d1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="core" target="d2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="core" target="d3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="core" target="d4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g1" value="advanced RAG thêm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=10;verticalAlign=bottom;" edge="1" parent="1" source="d1" target="f1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="d2" target="f2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="d3" target="f3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="d4" target="f4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

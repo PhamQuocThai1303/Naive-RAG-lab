@@ -1,0 +1,111 @@
+<mxfile host="app.diagrams.net" modified="2026-07-28T00:00:00.000Z" agent="TECHSpherex-AI" version="24.0.0" type="device">
+  <diagram name="RAG Lab - kien truc code" id="raglab-arch">
+    <mxGraphModel dx="1100" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1060" pageHeight="1060" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="cUI" value="app.py · luồng UI (Tk main thread)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeColor=#6c8ebf;verticalAlign=top;fontFamily=Segoe UI;fontSize=14;fontStyle=1;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="980" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="cW" value="luồng nền (daemon thread)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeColor=#82b366;verticalAlign=top;fontFamily=Segoe UI;fontSize=14;fontStyle=1;fontColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="440" width="980" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="cCore" value="rag_core.py · thuần Python, không phụ thuộc Tk" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeColor=#6c8ebf;verticalAlign=top;fontFamily=Segoe UI;fontSize=14;fontStyle=1;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="670" width="980" height="170" as="geometry" />
+        </mxCell>
+
+        <mxCell id="side" value="Cột trái&lt;br&gt;tham số bước 1-5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cUI">
+          <mxGeometry x="30" y="50" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="chat" value="Cột giữa&lt;br&gt;khung chat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cUI">
+          <mxGeometry x="270" y="50" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tabs" value="Cột phải · 5 tab&lt;br&gt;Điểm · Vector · Chunk · Prompt · So sánh" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cUI">
+          <mxGeometry x="510" y="50" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="poll" value="_poll()&lt;br&gt;đọc queue định kỳ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cUI">
+          <mxGeometry x="770" y="50" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="viz" value="rag_viz.py — dựng ảnh bằng PIL, không biết gì về Tk&lt;br&gt;PipelineDiagram · ScoreChart · EmbeddingMap (PCA 3D)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cUI">
+          <mxGeometry x="270" y="130" width="470" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="queue" value="queue.Queue&lt;br&gt;'retrieved' · 'prompt' · 'answer' · 'error'" style="shape=tape;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="390" y="310" width="280" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="wi" value="_worker_index()&lt;br&gt;chunk + embed toàn bộ tài liệu" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cW">
+          <mxGeometry x="30" y="50" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wa" value="_worker_ask(query, mode, key)&lt;br&gt;tham số Tk đã đọc sẵn ở luồng UI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cW">
+          <mxGeometry x="350" y="50" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wc" value="_worker_compare()&lt;br&gt;3 cách cắt × 2 embedder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cW">
+          <mxGeometry x="670" y="50" width="280" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pipe" value="Pipeline.index()&lt;br&gt;CHUNKERS · EMBEDDERS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cCore">
+          <mxGeometry x="30" y="55" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ask" value="Pipeline.ask()&lt;br&gt;cosine → top-k → ngưỡng" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cCore">
+          <mxGeometry x="270" y="55" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bp" value="build_prompt()&lt;br&gt;nối ngữ cảnh + câu hỏi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cCore">
+          <mxGeometry x="510" y="55" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ans" value="answer_extractive()&lt;br&gt;answer_with_gemini() / _claude()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="cCore">
+          <mxGeometry x="750" y="55" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="llm" value="Gemini / Claude&lt;br&gt;(tuỳ chọn)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="770" y="880" width="220" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="st" value="selftest.py — 64 kiểm tra, chạy được không cần GUI&lt;br&gt;vừa là bộ test vừa là tài liệu chạy được" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Segoe UI;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="890" width="430" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lg" value="&lt;b&gt;Chú giải&lt;/b&gt;&amp;nbsp;&amp;nbsp; &lt;font color=&quot;#6c8ebf&quot;&gt;■&lt;/font&gt; xử lý / giao diện&amp;nbsp;&amp;nbsp; &lt;font color=&quot;#82b366&quot;&gt;■&lt;/font&gt; luồng nền&amp;nbsp;&amp;nbsp; &lt;font color=&quot;#9673a6&quot;&gt;■&lt;/font&gt; hàng đợi&amp;nbsp;&amp;nbsp; &lt;font color=&quot;#666666&quot;&gt;■&lt;/font&gt; bên thứ 3" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b3b3b3;align=left;verticalAlign=middle;spacing=8;fontFamily=Segoe UI;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="990" width="700" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="x1" value="bấm LẬP CHỈ MỤC / Hỏi&lt;br&gt;→ Thread().start()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=10;verticalAlign=bottom;" edge="1" parent="1" source="side" target="wi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x2" value="put()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="wa" target="queue">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x3" value="get_nowait()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="queue" target="poll">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x4" value="đổ kết quả vào 5 tab" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=10;verticalAlign=bottom;" edge="1" parent="1" source="poll" target="tabs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="wi" target="pipe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="wa" target="ask">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=11;" edge="1" parent="1" source="wa" target="bp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x8" value="chỉ khi chọn Gemini/Claude" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=block;dashed=1;fontFamily=Segoe UI;fontSize=10;verticalAlign=bottom;" edge="1" parent="1" source="ans" target="llm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x9" value="frame() → ảnh PIL" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=none;endArrow=block;fontFamily=Segoe UI;fontSize=10;" edge="1" parent="1" source="viz" target="tabs">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="775" y="215" />
+              <mxPoint x="775" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="x10" value="gọi thẳng, không qua GUI" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=none;endArrow=block;dashed=1;fontFamily=Segoe UI;fontSize=10;verticalAlign=bottom;" edge="1" parent="1" source="st" target="pipe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
